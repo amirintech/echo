@@ -1,9 +1,11 @@
 import CenterLayout from '@workspace/ui/components/shared/center-layout'
 
-interface Props {
+type Props = {
   children: React.ReactNode
 }
 
-export default function Layout({ children }: Props) {
+const Layout = ({ children }: Props) => {
   return <CenterLayout>{children}</CenterLayout>
 }
+
+export default Layout

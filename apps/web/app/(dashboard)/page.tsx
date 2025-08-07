@@ -1,4 +1,4 @@
-import { SignOutButton } from '@clerk/nextjs'
+import { OrganizationSwitcher, SignOutButton } from '@clerk/nextjs'
 import { Button } from '@workspace/ui/components/button'
 
 export default function Page() {
@@ -7,6 +7,7 @@ export default function Page() {
       <div className="flex flex-col items-center justify-center gap-4">
         <h1 className="text-2xl font-bold">Hello Web</h1>
         <Button size="sm">Button</Button>
+        <OrganizationSwitcher />
         <SignOutButton>
           <Button size="sm">Sign Out</Button>
         </SignOutButton>
