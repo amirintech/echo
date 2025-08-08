@@ -3,8 +3,10 @@
 import { Button } from '@workspace/ui/components/button'
 import { api } from '@workspace/backend/_generated/api'
 import { useMutation, useQuery } from 'convex/react'
+import { useVapi } from '@/modules/widget/hooks/use-vapi'
 
 export default function Page() {
+  const { startCall, stopCall, messages, isConnecting, isConnected, isSpeaking } = useVapi()
   const users = useQuery(api.users.list)
   const createUser = useMutation(api.users.create)
   console.log(users)
@@ -15,6 +17,23 @@ export default function Page() {
         <Button size="sm" onClick={() => createUser({ name: 'John Doe', email: 'john.doe@example.com' })}>
           Create User
         </Button>
+
+        <Button size="sm" onClick={() => startCall()}>
+          Start Call
+        </Button>
+        <Button size="sm" onClick={() => stopCall()}>
+          End Call
+        </Button>
+
+        <div>
+          <p>Is Connecting: {isConnecting ? 'Yes' : 'No'}</p>
+          <p>Is Connected: {isConnected ? 'Yes' : 'No'}</p>
+          <p>Is Speaking: {isSpeaking ? 'Yes' : 'No'}</p>
+        </div>
+
+        <div>
+          <pre>{JSON.stringify(messages, null, 2)}</pre>
+        </div>
 
         <div>
           {users?.map(user => (
